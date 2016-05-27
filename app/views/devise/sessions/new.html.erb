@@ -1,0 +1,19 @@
+<h2>Log in</h2>
+
+<%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+  <fieldset class="form-group">
+    <%= f.input :username, required: false, autofocus: true, class: 'form-control' %>
+    <%= f.input :password, required: false, class: 'form-control' %>
+  </fieldset>
+  <% if devise_mapping.rememberable? %>
+    <fieldset class="form-group">
+      <%= f.input :remember_me, as: :boolean %>
+    </fieldset>
+  <% end %>
+
+  <fieldset class="form-group">
+    <%= f.button :submit, "Login", class: 'btn btn-primary' %>
+  </fieldset>
+<% end %>
+
+<%= render "devise/shared/links" %>

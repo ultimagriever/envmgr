@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Application Environment Manager</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+  <div id="navbar" class="navbar-collapse collapse">
+    <ul class="nav navbar-nav">
+      <%= link_to('Current Tenant', '/', class: 'navbar-brand') %>
+      <li><%= link_to('Apps', apps_path) %></li>
+      <li><%= link_to('Environments', envs_path) %></li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <% if user_signed_in? %>
+        <li><%= link_to current_user.email, '#' %></li>
+        <li><%= link_to 'Account', edit_user_registration_path %></li>
+        <li><%= link_to 'Logout', destroy_user_session_path, method: :delete %></li>
+      <% else %>
+        <li><%= link_to 'Sign up', new_user_registration_path %></li>
+        <li><%= link_to 'Login', new_user_session_path %></li>
+      <% end %>
+    </ul>
+  </div>
+  </div>
+</nav>
+
+<div class="container">
+  <%= yield %>
+</div>
+
+</body>
+</html>
